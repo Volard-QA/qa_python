@@ -25,7 +25,6 @@ class TestBooksCollector:
     # напиши свои тесты ниже
     # чтобы тесты были независимыми в каждом из них создавай отдельный экземпляр класса BooksCollector()
     #Проверяем добавление дублей книг
-    import pytest
     @pytest.mark.parametrize('book_name', ['Лабиринты Эхо', 'Вишневый сад', 'Цифровое искусство'])
     def test_add_new_book_add_same_book(book_name):
         collector = BooksCollector()
