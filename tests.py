@@ -34,7 +34,7 @@ class TestBooksCollector:
         collector.add_new_book(book_name)
         assert len(collector.get_books_genre()) == 1
 
-    #Проверяем соответствие
+    #Проверяем соответствие жанра, который записали тому, который должны были записать
     @pytest.mark.parametrize('book_name, genre', [['Лабиринты Эхо','Фантастика'],
                                                   ['Операция Ы','Комедия'],
                                                   ['Душа','Мультфильм']])
@@ -42,7 +42,7 @@ class TestBooksCollector:
         collector = BooksCollector()
         collector.add_new_book(book_name)
         collector.set_book_genre(book_name, genre)
-        assert collector.get_book_genre(book_name) == genre
+        assert collector.books_genre[book_name] == genre
 
     #Проверяем соответствие выводимого функцией жанра установленному.
     @pytest.mark.parametrize('book_name, genre', [['Лабиринты Эхо', 'Фантастика']])
@@ -65,7 +65,7 @@ class TestBooksCollector:
         assert collector.get_books_with_specific_genre('Фантастика') == [book_1_name, book_2_name]
 
     #Проверяем корректное создание словаря книг с жанрами
-    def test_get_books_genre_get_correct_dic_data():
+    def test_get_books_genre_get_correct_dic_data(self):
         collector = BooksCollector()
         collector.add_new_book('Лабиринты Эхо')
         collector.set_book_genre('Лабиринты Эхо', 'Фантастика')
@@ -121,7 +121,7 @@ class TestBooksCollector:
         assert book_name not in collector.favorites
 
     # Проверяем корректный вывод списка книг в избранном
-    def test_get_list_of_favorites_books_got_expected_books():
+    def test_get_list_of_favorites_books_got_expected_books(self):
         collector = BooksCollector()
         collector.add_book_in_favorites('Лабиринты Эхо')
         collector.add_book_in_favorites('Приключения капитан Гранта')
